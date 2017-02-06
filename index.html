@@ -5,6 +5,28 @@
     <title>Simple-Todo-List</title>
   </head>
   <body>
+    <h1>Todo List</h1>
+    <div>
+      <button onclick="handlers.displayTodos()">Display Todos</button>
+      <button onclick="handlers.toggleAll()">Toggle All</button>
+    </div>
+    <div>
+      <button onclick="handlers.addTodo()">Add</button>
+      <input name="addTodoInput" type="text" />
+    </div>
+    <div>
+      <button onclick="handlers.changeTodo()">Change Todo</button>
+      <input name="changeTodoPosition" type="number" />
+      <input name="changeTodoText" type="text" />
+    </div>
+    <div>
+      <button onclick="handlers.deleteTodo()">Delete</button>
+      <input name="deleteTodo" type="number" />
+    </div>
+    <div>
+      <button onclick="handlers.toggleCompleted()">Toggle Completed</button>
+      <input name="toggleCompleted" type="number" />
+    </div>
     <script src="todoList.js"></script>
   </body>
 </html>
