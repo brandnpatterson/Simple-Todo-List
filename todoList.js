@@ -21,27 +21,24 @@ var todoList = {
     var totalTodos = this.todos.length,
     completedTodos = 0;
 
-    for (var i = 0; i < this.todos.length; i++) {
-      if (this.todos[i].completed === true) {
+    this.todos.forEach(function(todo) {
+      if (todo.completed === true) {
         completedTodos++;
       }
-    }
+    });
 
-    if (completedTodos === totalTodos ) {
-      for (var i = 0; i < this.todos.length; i++) {
-        this.todos[i].completed = false;
+    this.todos.forEach(function(todo) {
+      if (completedTodos === totalTodos) {
+        todo.completed = false;
+      } else {
+        todo.completed = true;
       }
-    } else {
-      for (var i = 0; i < this.todos.length; i++) {
-        this.todos[i].completed = true;
-      }
-    }
+    });
   }
 };
 
 // controller // handles user interactions onclick
 var handlers = {
-
   addTodo: function () {
     var addTodoInput = document.getElementsByName('addTodoInput')[0];
 
@@ -93,9 +90,8 @@ var view = {
     var todosUl = document.querySelector('.todos');
     todosUl.innerHTML = '';
 
-    for (var i = 0; i < todoList.todos.length; i++) {
+    todoList.todos.forEach(function(todo, position) {
       var todoLi = document.createElement('li');
-      var todo = todoList.todos[i];
 
       var todoTextWithCompletion = '';
       if (todo.completed === true) {
@@ -105,14 +101,16 @@ var view = {
       }
 
       // each todoLi in the loop is assigned to an id position
-      todoLi.id = i;
+      todoLi.id = position;
       // each li text has completion
       todoLi.textContent = todoTextWithCompletion;
 
       // append a delete button to each li element
       todoLi.appendChild(this.createDeleteButton());
       todosUl.appendChild(todoLi);
-    }
+      
+      // this added to callback function, properly referring to the view object and not the window
+    }, this);
   },
   createDeleteButton: function () {
     var deleteButton = document.createElement('button');
@@ -133,7 +131,7 @@ var view = {
 
       // Check if elementClicked is a delete button
       if (elementClicked.className === 'deleteButton') {
-        
+
         // Event deligation to the parentNode
         handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
       }
