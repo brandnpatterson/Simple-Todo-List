@@ -2,30 +2,42 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cerulean/bootstrap.min.css" rel="stylesheet" />
     <title>Simple-Todo-List</title>
   </head>
   <body>
-    <h1>Todo List</h1>
-    <div>
-      <button onclick="handlers.displayTodos()">Display Todos</button>
-      <button onclick="handlers.toggleAll()">Toggle All</button>
-    </div>
-    <div>
-      <button onclick="handlers.addTodo()">Add</button>
-      <input name="addTodoInput" type="text" />
-    </div>
-    <div>
-      <button onclick="handlers.changeTodo()">Change Todo</button>
-      <input name="changeTodoPosition" type="number" />
-      <input name="changeTodoText" type="text" />
-    </div>
-    <div>
-      <button onclick="handlers.deleteTodo()">Delete</button>
-      <input name="deleteTodo" type="number" />
-    </div>
-    <div>
-      <button onclick="handlers.toggleCompleted()">Toggle Completed</button>
-      <input name="toggleCompleted" type="number" />
+    <div class="container-fluid">
+      <div class="jumbotron">
+        <h1>Todo List</h1>
+      </div>
+
+      <div>
+        <button onclick="handlers.addTodo()">Add</button>
+        <input name="addTodoInput" type="text" />
+      </div>
+
+      <div>
+        <button onclick="handlers.changeTodo()">Change Todo</button>
+        <input name="changeTodoPosition" type="number" />
+        <input name="changeTodoText" type="text" />
+      </div>
+
+      <div>
+        <button onclick="handlers.deleteTodo()">Delete</button>
+        <input name="deleteTodo" type="number" />
+      </div>
+
+      <div>
+        <button onclick="handlers.toggleCompleted()">Toggle Completed</button>
+        <input name="toggleCompleted" type="number" />
+      </div>
+
+      <div>
+        <button onclick="handlers.toggleAll()">Toggle All</button>
+      </div>
+
+      <ul class="todos"></ul>
+
     </div>
     <script src="todoList.js"></script>
   </body>
