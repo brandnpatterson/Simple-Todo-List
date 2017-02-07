@@ -99,7 +99,7 @@ var view = {
   displayTodos: function () {
     var todosUl = document.querySelector('.todos');
     todosUl.innerHTML = '';
-s
+
     for (var i = 0; i < todoList.todos.length; i++) {
       var todoLi = document.createElement('li');
       var todo = todoList.todos[i];
