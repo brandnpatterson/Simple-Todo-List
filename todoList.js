@@ -1,4 +1,4 @@
-// model
+// model // represents data as an array and has methods to change the data
 var todoList = {
   todos: [],
   addTodo: function (todoText) {
@@ -39,7 +39,7 @@ var todoList = {
   }
 };
 
-// controller
+// controller // handles user interactions onclick
 var handlers = {
 
   addTodo: function () {
@@ -66,15 +66,8 @@ var handlers = {
     }
     view.displayTodos();
   },
-  deleteTodo: function () {
-    var deleteTodo = document.getElementsByName('deleteTodo')[0];
-
-    if (deleteTodo.value === '') {
-      return;
-    } else {
-      todoList.deleteTodo(deleteTodo.value);
-      deleteTodo.value = '';
-    }
+  deleteTodo: function (position) {
+    todoList.deleteTodo(position);
     view.displayTodos();
   },
   toggleCompleted: function () {
@@ -94,7 +87,7 @@ var handlers = {
   }
 };
 
-// view
+// view // only concerned with showing people what the todo list looks like
 var view = {
   displayTodos: function () {
     var todosUl = document.querySelector('.todos');
@@ -111,8 +104,77 @@ var view = {
         todoTextWithCompletion = '( ) ' + todo.todoText;
       }
 
+      // each todoLi in the loop is assigned to an id position
+      todoLi.id = i;
+      // each li text has completion
       todoLi.textContent = todoTextWithCompletion;
+
+      // append a delete button to each li element
+      todoLi.appendChild(this.createDeleteButton());
       todosUl.appendChild(todoLi);
     }
+  },
+  createDeleteButton: function () {
+    var deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.className = 'deleteButton';
+
+    return deleteButton;
+  },
+  setUpEventListeners: function () {
+    var todosUl = document.querySelector('.todos');
+
+    // listen for all clicks on the unordered list
+    todosUl.addEventListener('click', function (e) {
+      console.log(e.target.parentNode.id);
+
+      // Get the element that was clicked on
+      var elementClicked = event.target;
+
+      // Check if elementClicked is a delete button
+      if (elementClicked.className === 'deleteButton') {
+        
+        // Event deligation to the parentNode
+        handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+      }
+    });
   }
 };
+view.setUpEventListeners();
+
+
+// var students = ['John', 'Jane', 'Elliot'];
+//
+// function logName (name) {
+//   console.log(name);
+// }
+//
+// logName(students[0]); // John
+//
+// logName(students)
+// for (var i = 0; i < students.length; i++) {
+// 	logName(students[i]);
+// } // John, Jane, Elliot
+//
+// // forEach = JavaScript method, higher order function // logName = callback functions
+// students.forEach(function logName(name) {
+//   console.log(name);
+// }) // John, Jane, Elliot
+//
+// // custom forEach function
+// function forEach(myArray, myFunction) {
+//   for (var i = 0; i < myArray.length; i++) {
+//     myFunction(myArray[i]);
+//   }
+// }
+//
+// forEach(students, logName); // John, Jane, Elliot
+//
+// // higher order function -- functions that accept other functions
+// // callback functions    -- the functions that are passed into higher order functions
+//
+// function multiplyTwoNumbers(x, y) {
+//   return x * y;
+// }
+//
+// console.log(multiplyTwoNumbers(2, 4));
