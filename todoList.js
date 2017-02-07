@@ -7,23 +7,20 @@ var todoList = {
       completed: false
     });
   },
-
   changeTodo: function (position, todoText) {
     this.todos[position].todoText = todoText;
   },
-
   deleteTodo: function (position) {
     this.todos.splice(position, 1);
   },
-
   toggleCompleted: function (position) {
     var todo = this.todos[position];
     todo.completed = !todo.completed;
   },
-
   toggleAll: function () {
     var totalTodos = this.todos.length,
     completedTodos = 0;
+
     for (var i = 0; i < this.todos.length; i++) {
       if (this.todos[i].completed === true) {
         completedTodos++;
@@ -47,6 +44,7 @@ var handlers = {
 
   addTodo: function () {
     var addTodoInput = document.getElementsByName('addTodoInput')[0];
+
     if (addTodoInput.value === '') {
       return;
     } else {
@@ -55,10 +53,10 @@ var handlers = {
     }
     view.displayTodos();
   },
-
   changeTodo: function () {
     var changeTodoPosition = document.getElementsByName('changeTodoPosition')[0],
         changeTodoText     = document.getElementsByName('changeTodoText')[0];
+
     if (changeTodoPosition.value === '') {
       return;
     } else {
@@ -68,9 +66,9 @@ var handlers = {
     }
     view.displayTodos();
   },
-
   deleteTodo: function () {
     var deleteTodo = document.getElementsByName('deleteTodo')[0];
+
     if (deleteTodo.value === '') {
       return;
     } else {
@@ -79,9 +77,9 @@ var handlers = {
     }
     view.displayTodos();
   },
-
   toggleCompleted: function () {
     var toggleCompleted = document.getElementsByName('toggleCompleted')[0];
+
     if (toggleCompleted.value === '') {
       return;
     } else {
@@ -90,7 +88,6 @@ var handlers = {
     }
     view.displayTodos();
   },
-
   toggleAll: function () {
     todoList.toggleAll();
     view.displayTodos();
@@ -102,7 +99,7 @@ var view = {
   displayTodos: function () {
     var todosUl = document.querySelector('.todos');
     todosUl.innerHTML = '';
-
+s
     for (var i = 0; i < todoList.todos.length; i++) {
       var todoLi = document.createElement('li');
       var todo = todoList.todos[i];
